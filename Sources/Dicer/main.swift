@@ -65,11 +65,21 @@ extension Dice: ExpressibleByArgument {
         let firstNumberIndex = argument.index(argument.startIndex, offsetBy: 1)
         let numberSubstring = argument.suffix(from: firstNumberIndex)
         
-        guard let number = Int(String(numberSubstring)), number > 0 else {
+        guard let number = Int(String(numberSubstring)) else {
             throw ValidationError("Couldn't conver dice to number - \(String(numberSubstring))")
         }
         
-        return Dice(sides: number)
+        do {
+            let dice = try Dice(sides: number)
+            return dice
+        }
+        catch Dice.DiceError.wrongValue(let message) {
+            throw ValidationError(message)
+        }
+        catch {
+            throw ValidationError("Unknow error")
+        }
+        
     }
     
 }
