@@ -1,7 +1,7 @@
 import ArgumentParser
 
 struct Dicer: ParsableCommand {
-    static var configuration = CommandConfiguration(abstract: "A utility for performing maths.", subcommands: [Roll.self], defaultSubcommand: Roll.self)
+    static var configuration = CommandConfiguration(abstract: "Simple tool for rolling physical like dices", subcommands: [Roll.self], defaultSubcommand: Roll.self)
     
     // MARK: Options
     
