@@ -6,7 +6,7 @@ struct Dicer: ParsableCommand {
     // MARK: Options
     
     struct Options: ParsableArguments {
-        @Flag(inversion: .prefixedNo, help: "Prints each dice value separately") var showSeparately = false
+        @Flag(name: [.customShort("s"), .long], inversion: .prefixedNo, help: "Prints each dice value separately") var showSeparately = false
         
         @Argument(help: ArgumentHelp("Dices to operate on", discussion: "Each dice should be prefixed with the `d` letter (shorcut for dice)", valueName: "dices", shouldDisplay: true), transform: Dice.from)
         var dices: [Dice]
